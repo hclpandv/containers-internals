@@ -1,9 +1,9 @@
 # containers-internals
-containers-internals, an experiment from various places to understand how container technology works under the hood.
+containers-internals, an experiment from various youtube channels and blogs to understand how container technology works under the hood.
 
 The trick : 
 
-1. `chroot` command. This changes the root of the file system and attaches the `\` to any child dir. Hence provides files system isolation.
+1. `chroot` command. This changes the root of the file system and attaches the `/` to any child dir. Hence provides files system isolation.
 2. `namespaces` a legacy unix concept and `unshare` command helps to isolate processes and other system calls.
 3. `cgroups` or control groups restricts the usage of the host system by the child process which is running the container. 
 
