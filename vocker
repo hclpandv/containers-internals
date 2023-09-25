@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+#-----------------------------------------------------
+# viki docker becomes vocker for experimental purposes
+#-----------------------------------------------------
+
+# Function to display help information
+display_help() {
+    echo "Usage: $0 [OPTIONS]"
+    echo "Options:"
+    echo "  -h, --help     Display this help message."
+    echo "  --version      Display the version."
+    echo "  ...             Other options you may define."
+}
+
+# Function to display the version
+display_version() {
+    echo "vocker version 1.0 (Experimental)"
+}
+
+# chroot to a directory
+
+
+# Check arguments
+if [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
+    display_help
+elif [ "$1" == "--version" ]; then
+    display_version
+elif [ "$1" == "run" ]; then
+    chroot_dir        
+fi
+
+echo "Welcome to Vocker!! the vikiscripts docker like implementation (Experimental)"
+
+# chroot command
