@@ -6,12 +6,13 @@
 
 # Function to display help information
 display_help() {
-    echo "Welcome to Vocker!! the vikiscripts docker like implementation (Experimental)"
+    echo "Welcome to Vocker!! the vikiscripts docker-like implementation (Experimental)"
     echo ""
     echo "Usage: $0 [OPTIONS]"
     echo "Options:"
     echo "  -h, --help     Display this help message."
     echo "  --version      Display the version."
+    echo "  run            Run a command in a chrooted environment."
     echo "  ...             Other options you may define."
 }
 
@@ -20,9 +21,20 @@ display_version() {
     echo "vocker version 1.0 (Experimental)"
 }
 
-# chroot to a directory
-chroot_dir(){
-    chroot $2/ $3
+# Function to chroot to a directory and set up process isolation and cgroup restrictions
+chroot_dir() {
+    local dir="$2"
+    local command="$3"
+
+    # Create a separate mount namespace for filesystem isolation
+    unshare --mount chroot "$dir" /bin/sh -c "$command"
+
+    # Set up cgroup restrictions
+    cgcreate -g "memory,cpuset:/vocker"
+    echo $$ > /sys/fs/cgroup/memory/vocker/tasks
+    echo $$ > /sys/fs/cgroup/cpuset/vocker/tasks
+    echo "100M" > /sys/fs/cgroup/memory/vocker/memory.limit_in_bytes  # Example memory limit: 100MB
+    echo "0-1" > /sys/fs/cgroup/cpuset/vocker/cpuset.cpus              # Example CPU affinity: CPU cores 0 and 1
 }
 
 # Check arguments
@@ -31,8 +43,5 @@ if [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
 elif [ "$1" == "--version" ] || [ "$1" == "-v" ]; then
     display_version
 elif [ "$1" == "run" ]; then
-    chroot_dir        
+    chroot_dir "$@"
 fi
-
-
-# chroot command
