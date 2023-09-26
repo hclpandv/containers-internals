@@ -22,7 +22,7 @@ display_version() {
 
 # chroot to a directory
 chroot_dir(){
-    chroot fakeroot/ /bin/sh
+    chroot $2/ $3
 }
 
 # Check arguments
