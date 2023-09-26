@@ -6,6 +6,8 @@
 
 # Function to display help information
 display_help() {
+    echo "Welcome to Vocker!! the vikiscripts docker like implementation (Experimental)"
+    echo ""
     echo "Usage: $0 [OPTIONS]"
     echo "Options:"
     echo "  -h, --help     Display this help message."
@@ -19,7 +21,9 @@ display_version() {
 }
 
 # chroot to a directory
-
+chroot_dir(){
+    chroot fakeroot/ /bin/sh
+}
 
 # Check arguments
 if [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
@@ -30,6 +34,5 @@ elif [ "$1" == "run" ]; then
     chroot_dir        
 fi
 
-echo "Welcome to Vocker!! the vikiscripts docker like implementation (Experimental)"
 
 # chroot command
