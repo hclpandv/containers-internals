@@ -11,3 +11,6 @@ tar -C fakeroot -xf alpine-minirootfs-*.tar.gz
 
 # delete the tar file
 rm alpine-minirootfs-*.tar.gz
+
+# move vocker to /usr/local/bin
+mv vocker /usr/local/bin/vocker
