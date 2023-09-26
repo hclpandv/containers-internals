@@ -15,5 +15,5 @@ The trick :
 
 ## Start the Experiments
 
-1.   
+1. On host system : `unshare -p -f --mount-proc $PWD/fakeroot/proc chroot fakeroot /bin/sh`
 
