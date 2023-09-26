@@ -28,7 +28,7 @@ chroot_dir(){
 # Check arguments
 if [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
     display_help
-elif [ "$1" == "--version" ]; then
+elif [ "$1" == "--version" ] || [ "$1" == "-v" ]; then
     display_version
 elif [ "$1" == "run" ]; then
     chroot_dir        
